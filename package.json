@@ -1,16 +1,11 @@
 {
   "name": "@lowfront/firebase-adapter",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Firebase adapter for NextAuth.js using Firebase auth's CustomToken authentication method.",
-  "main": "./cjs/index.js",
-  "types": "./types/index.d.ts",
-  "exports": {
-    "import": "./esm/index.js",
-    "require": "./cjs/index.js",
-    "default": "./cjs/index.js"
-  },
+  "main": "./index.js",
+  "types": "./index.d.ts",
   "scripts": {
-    "build": "tsc --project tsconfig.esm.json & tsc --project tsconfig.cjs.json",
+    "build": "tsc --project tsconfig.cjs.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
