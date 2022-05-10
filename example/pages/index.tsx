@@ -1,17 +1,18 @@
 import type { NextPage } from 'next'
 import { signIn, signOut, useSession } from 'next-auth/react';
-import { getUserDoc, getDoc } from '../../dist/cjs/web';
+import { getUserDoc, getDoc } from '@lowfront/firebase-adapter/web';
 import { db } from '../lib/firebase-web';
 
 const Home: NextPage = () => {
   const { data: session } = useSession();
-  
+
   async function loadData() {
     try {
-      const testDoc = getUserDoc(db, session?.user?.email, 'store', 'test');
+      const testDoc = getUserDoc(db, session?.user?.email ?? '', 'store', 'test');
       await getDoc(testDoc);
       alert('success load data');
-    } catch {
+    } catch (err) {
+      console.log(err);
       alert('Fail load data');
     }
   }
