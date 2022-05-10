@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Adapter plug-in for NextAuth.js to use custom token method authentication. It is currently intended for Firestore Database, and will add a Realtime Database adapter later. Firebase can handle the database in the client, but there is not enough providers for authentication provided by Firebase. This package allows you to create rules in Firebase using credentials from various OAuth providers in NextAuth, and allows you to use Firebase in the client while the database is protected. 
+Adapter plug-in for NextAuth.js to use custom token method authentication. It is currently intended for Firestore Database, and will add a Realtime Database adapter later. Firebase can handle the database in the client, but there is not enough providers for authentication provided by Firebase. This package allows you to create rules in Firebase using credentials from various OAuth providers in NextAuth, and allows you to use Firebase in the client while the database is protected. Examples of use can be found [here](https://github.com/lowfront/firebase-adapter/tree/master/example).
 
 ## How to start
 
@@ -19,7 +19,7 @@ import { getFirestore } from 'firebase-admin/firestore';
 
 const app = admin.initializeApp({
   // https://firebase.google.com/docs/admin/setup#initialize-sdk
-  // It is recommended to make it an environment variable to distribute to vercel: 
+  // It is recommended to make it an environment variable to distribute to vercel: https://github.com/lowfront/firebase-adapter/blob/master/example/lib/firebase-server.ts#L9-L18
   credential: admin.credential.cert({...} as ServiceAccount),
 });
 
@@ -71,7 +71,8 @@ Unlike servers, the client uses the Firebase SDK to access the database. So, ini
 ```tsx
 import { getUserDoc, getDoc } from '@lowfront/firebase-adapter';
 
-const firebaseConfig = { ... } as FirebaseOptions;
+// It is recommended to make it an environment variable to distribute to vercel: https://github.com/lowfront/firebase-adapter/blob/master/example/lib/firebase-web.ts#L12-L18
+const firebaseConfig = { ... } as FirebaseOptions; 
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
