@@ -2,8 +2,8 @@ import admin, { ServiceAccount } from "firebase-admin";
 import { getAuth } from "firebase-admin/auth";
 import { getFirestore } from 'firebase-admin/firestore';
 
-// https://github.com/vercel/next.js/issues/1999#issuecomment-302244429
-if (!admin.apps.length) {
+// How to get admin config: https://firebase.google.com/docs/admin/setup#initialize-sdk
+if (!admin.apps.length) { // https://github.com/vercel/next.js/issues/1999#issuecomment-302244429
   admin.initializeApp({
     credential: admin.credential.cert({
       type: process.env.FIREBASE_ADMIN_CONFIG_type,
