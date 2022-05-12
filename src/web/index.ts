@@ -1,7 +1,6 @@
 import { getApp } from "firebase/app";
 import { getAuth, signInWithCustomToken } from "firebase/auth";
 import {
-  getFirestore,
   doc,
   addDoc as _addDoc,
   getDoc as _getDoc,

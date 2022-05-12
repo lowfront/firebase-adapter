@@ -1,10 +1,8 @@
 node_modules/
-cjs/
-esm/
-types/
-firestore/
-next/
-web/
+/types/
+/firestore/
+/next/
+/web/
 /helper.d.ts
 /*.js
 /*.ts

@@ -69,9 +69,9 @@ service cloud.firestore {
 ```
 
 ### Example of using the client
-Unlike servers, the client uses the Firebase SDK to access the database. So, initialize the app with Firebase config and pass the db object to the function provided by the package for use it. The CRUD function (setDoc, addDoc, getDoc, updateDoc, removeDoc...) in Firebase v9 must use the functions wrapped in the package.
+Unlike servers, the client uses the Firebase SDK to access the database. So, initialize the app with Firebase config and pass the db object to the function provided by the package for use it. The CRUD function (setDoc, addDoc, getDoc, updateDoc, removeDoc...) in Firebase v9 must use the functions wrapped in the package. The wrapper functions have the same signature as Firebase SDK v9.
 ```tsx
-import { getUserDoc, getDoc } from '@lowfront/firebase-adapter';
+import { getUserDoc, getDoc, addDoc, getDoc, getDocs, setDoc, updateDoc, deleteDoc } from '@lowfront/firebase-adapter';
 
 // It is recommended to make it an environment variable to distribute to vercel: https://github.com/lowfront/firebase-adapter/blob/master/example/lib/firebase-web.ts#L12-L18
 const firebaseConfig = { ... } as FirebaseOptions; 
