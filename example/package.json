@@ -1,7 +1,6 @@
 {
   "name": "firebase-adapter-example",
   "version": "0.0.2",
-  "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
