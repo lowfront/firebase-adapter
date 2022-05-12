@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@lowfront/firebase-adapter': ^0.0.6
+  '@lowfront/firebase-adapter': ^0.0.8
   '@types/node': 17.0.31
   '@types/react': 18.0.9
   '@types/react-dom': 18.0.3
@@ -16,7 +16,7 @@ specifiers:
   typescript: 4.6.4
 
 dependencies:
-  '@lowfront/firebase-adapter': 0.0.6_ef5jwxihqo6n7gxfmzogljlgcm
+  '@lowfront/firebase-adapter': 0.0.8_ef5jwxihqo6n7gxfmzogljlgcm
   firebase: 9.8.1
   firebase-admin: 10.2.0
   next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
@@ -683,8 +683,8 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
-  /@lowfront/firebase-adapter/0.0.6_ef5jwxihqo6n7gxfmzogljlgcm:
-    resolution: {integrity: sha512-hphcXQ07DDzWBNTt0PirxaLZOo9GMWnSmvOPLO8/2wxK1GFfm/KrDRADmKj1sc7jDAukBLwvFmQ2/xcsvrTNYg==}
+  /@lowfront/firebase-adapter/0.0.8_ef5jwxihqo6n7gxfmzogljlgcm:
+    resolution: {integrity: sha512-Oc1pNo5irrxjVS4ZVOw/QmttE4nW5VsJoq4/vBgtr6YrCQYnqnRDT5d47QwzCwkurFYpaK9jXKIDB/8Nzj0HNg==}
     dependencies:
       firebase: 9.8.1
       firebase-admin: 10.2.0
