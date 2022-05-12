@@ -8,6 +8,7 @@ Adapter plug-in for NextAuth.js to use custom token method authentication. It is
 
 ### Installation
 This module is built for NextAuth.js v4. And, the Firebase admin SDK is used for storing NextAuth.js data, and the Firebase SDK is also required to access it from the client. Install [NextAuth.js](https://www.npmjs.com/package/next-auth) and [Firebase Admin SDK](https://www.npmjs.com/package/firebase-admin) as required, and install [Firebase SDK](https://www.npmjs.com/package/firebase) depending on whether the client uses Firebase.
+
 ```npm i @lowfront/firebase-adapter```
 
 ### Register NextAuth.js
