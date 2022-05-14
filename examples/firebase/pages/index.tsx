@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { getUserDoc, getDoc } from '@lowfront/firebase-adapter/web';
+import { get, push, update, remove, ref } from 'firebase/database';
 import { db } from '../lib/firebase-web';
 
 const Home: NextPage = () => {
@@ -8,12 +9,11 @@ const Home: NextPage = () => {
 
   async function loadData() {
     try {
-      const testDoc = getUserDoc(db, session?.user?.email ?? '', 'store', 'test');
-      await getDoc(testDoc);
-      alert('success load data');
+      // const testDoc = await get(ref(db, `_next_auth_firebase_adapter_/store/${session?.user?.email ?? ''}/test`));
+      // alert('success load data');
     } catch (err) {
       console.log(err);
-      alert('Fail load data');
+      // alert('Fail load data');
     }
   }
 

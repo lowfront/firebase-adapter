@@ -1,6 +1,7 @@
 import admin, { ServiceAccount } from "firebase-admin";
+import { App } from "firebase-admin/app";
 import { getAuth } from "firebase-admin/auth";
-import { getFirestore } from 'firebase-admin/firestore';
+import { getDatabase } from 'firebase-admin/database';
 
 // How to get admin config: https://firebase.google.com/docs/admin/setup#initialize-sdk
 if (!admin.apps.length) { // https://github.com/vercel/next.js/issues/1999#issuecomment-302244429
@@ -16,12 +17,13 @@ if (!admin.apps.length) { // https://github.com/vercel/next.js/issues/1999#issue
       token_uri: process.env.FIREBASE_ADMIN_CONFIG_token_uri,
       auth_provider_x509_cert_url: process.env.FIREBASE_ADMIN_CONFIG_auth_provider_x509_cert_url,
       client_x509_cert_url: process.env.FIREBASE_ADMIN_CONFIG_client_x509_cert_url,
-    } as ServiceAccount)
+    } as ServiceAccount),
+    databaseURL: 'https://next-auth-firebase-todo-mvc-default-rtdb.asia-southeast1.firebasedatabase.app',
   });
 }
 
-export const app = admin.apps[0];
+export const app = admin.apps[0] as App;
 
 export const auth = getAuth();
 
-export const db = getFirestore();
+export const db = getDatabase(app);

@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@lowfront/firebase-adapter': ^0.0.8
+  '@lowfront/firebase-adapter': ../../
   '@types/node': 17.0.31
   '@types/react': 18.0.9
   '@types/react-dom': 18.0.3
@@ -16,7 +16,7 @@ specifiers:
   typescript: 4.6.4
 
 dependencies:
-  '@lowfront/firebase-adapter': 0.0.8_ef5jwxihqo6n7gxfmzogljlgcm
+  '@lowfront/firebase-adapter': link:../..
   firebase: 9.8.1
   firebase-admin: 10.2.0
   next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
@@ -682,30 +682,6 @@ packages:
   /@humanwhocodes/object-schema/1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
-
-  /@lowfront/firebase-adapter/0.0.8_ef5jwxihqo6n7gxfmzogljlgcm:
-    resolution: {integrity: sha512-Oc1pNo5irrxjVS4ZVOw/QmttE4nW5VsJoq4/vBgtr6YrCQYnqnRDT5d47QwzCwkurFYpaK9jXKIDB/8Nzj0HNg==}
-    dependencies:
-      firebase: 9.8.1
-      firebase-admin: 10.2.0
-      next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
-      next-auth: 4.3.4_ef5jwxihqo6n7gxfmzogljlgcm
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@firebase/app-compat'
-      - '@firebase/app-types'
-      - babel-plugin-macros
-      - bufferutil
-      - encoding
-      - fibers
-      - node-sass
-      - nodemailer
-      - react
-      - react-dom
-      - sass
-      - supports-color
-      - utf-8-validate
-    dev: false
 
   /@next/env/12.1.6:
     resolution: {integrity: sha512-Te/OBDXFSodPU6jlXYPAXpmZr/AkG6DCATAxttQxqOWaq6eDFX25Db3dK0120GZrSZmv4QCe9KsZmJKDbWs4OA==}
