@@ -6,28 +6,36 @@ import { Session } from "next-auth";
 import { findMany } from "../firestore/helper";
 import { asyncMap } from '../helper';
 import { Adapter } from "next-auth/adapters";
+import { Database } from 'firebase-admin/database';
+import { CustomToken } from '../types';
 
-export type CustomToken = {
-  token: string;
-  expires: string; // date
-};
-
-export async function getCustomToken(db: Firestore, sessionToken: string, adapterCollectionName: string = '_next_auth_firebase_adapter_') {
-  const tokenDocRef = db.collection(adapterCollectionName).doc('store').collection('customToken').doc(sessionToken);
-  const tokenDoc = await tokenDocRef.get();
-  if (!tokenDoc.exists) return;
-  const { token, expires } = tokenDoc.data() as CustomToken;
+export async function getCustomToken(db: Firestore|Database, sessionToken: string, adapterCollectionName: string = '_next_auth_firebase_adapter_') {
+  let token, expires;
+  if (db instanceof Firestore) {
+    const tokenDocRef = db.collection(adapterCollectionName).doc('store').collection('customToken').doc(sessionToken);
+    const tokenDoc = await tokenDocRef.get();
+    if (!tokenDoc.exists) return;
+    ({ token, expires } = tokenDoc.data() as CustomToken);
+  } else {
+    const tokenSnap = await db.ref(`${adapterCollectionName}/customToken/${sessionToken}`).get();
+    if (!tokenSnap.exists()) return;
+    ({ token, expires } = tokenSnap.val() as CustomToken);
+  }
   if (Date.now() > new Date(expires).getTime()) return;
   return token;
 }
 
-export async function updateCustomToken(db: Firestore, sessionToken: string, token: string, adapterCollectionName: string = '_next_auth_firebase_adapter_') {
-  const tokenDocRef = db.collection(adapterCollectionName).doc('store').collection('customToken').doc(sessionToken);
-
-  await tokenDocRef.set({
+export async function updateCustomToken(db: Firestore|Database, sessionToken: string, token: string, adapterCollectionName: string = '_next_auth_firebase_adapter_') {
+  const tokenData = {
     token,
     expires: Date.now() + 60 * 60 * 1000,
-  });
+  };
+  if (db instanceof Firestore) {
+    const tokenDocRef = db.collection(adapterCollectionName).doc('store').collection('customToken').doc(sessionToken);
+    await tokenDocRef.set(tokenData);
+  } else {
+    await db.ref(`${adapterCollectionName}/customToken/${sessionToken}`).update(tokenData);
+  }
 
   return token;
 }
@@ -42,7 +50,7 @@ export function createFirebaseCustomTokenHandler({
   method = 'GET',
   additionalClaims,
 }: {
-  db: Firestore;
+  db: Firestore|Database;
   adapterCollectionName?: string;
   method?: string;
   additionalClaims?: (session: Session) => any;

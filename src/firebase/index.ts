@@ -2,12 +2,9 @@ import { Database } from "firebase-admin/database";
 import { Adapter, AdapterSession, AdapterUser, VerificationToken } from "next-auth/adapters";
 import { from, to } from "./helper";
 import { Account } from "next-auth";
+import { FirebaseAdapterProps } from "../types";
 
-export type FirebaseAdapterProps = {
-  adapterCollectionName?: string;
-}
-
-export default function FirestoreAdapter(
+export default function FirebaseAdapter(
   db: Database,
   options: FirebaseAdapterProps = {},
 ): Adapter {  
@@ -133,6 +130,8 @@ export default function FirestoreAdapter(
         ...sessionData,
       } as AdapterSession;
 
+      console.log('getSessionAndUser', session);
+
       return {
         user,
         session: from(session),
@@ -144,12 +143,12 @@ export default function FirestoreAdapter(
         userId: data.userId ?? null,
         expires: data.expires ?? null,
       };
-      const sessionRef = await sessionCollectionRef.push(sessionData);
+      const sessionRef = await sessionCollectionRef.push(to(sessionData));
       const session = {
         id: sessionRef.key,
-        ...to(sessionData) as any,
+        ...sessionData as any,
       } as unknown as AdapterSession;
-
+      console.log('createSession', session);
       return session;
     },
     async updateSession(data) {
@@ -158,7 +157,7 @@ export default function FirestoreAdapter(
       const sessionSnap = await q.once('value');
       if (!sessionSnap.exists()) return null;
       const [sessionKey] = Object.entries(sessionSnap.val())[0] as [string, Omit<AdapterUser, 'id'>];
-
+      console.log('updateSession', to(sessionData));
       await findSessionDoc(sessionKey).set(to(sessionData));
       return data as AdapterSession;
     },

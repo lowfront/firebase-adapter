@@ -2,10 +2,7 @@ import { Firestore } from "firebase-admin/firestore";
 import { Adapter, AdapterSession, AdapterUser, VerificationToken } from "next-auth/adapters";
 import { findOne, from } from "./helper";
 import { Account } from "next-auth";
-
-export type FirebaseAdapterProps = {
-  adapterCollectionName?: string;
-}
+import { FirebaseAdapterProps } from "../types";
 
 export default function FirestoreAdapter(
   db: Firestore,
@@ -19,10 +16,10 @@ export default function FirestoreAdapter(
   const verificationTokenCollectionRef = db.collection(adapterCollectionName).doc('store').collection('verificationToken');
   const customTokenCollectionRef = db.collection(adapterCollectionName).doc('store').collection('customToken');
 
-  const findUserDoc = (key: string) => userCollectionRef.doc(key);
-  const findAccountDoc = (key: string) => accountCollectionRef.doc(key);
-  const findSessionDoc = (key: string) => sessionCollectionRef.doc(key);
-  const findVerificationTokenDoc = (key: string) => verificationTokenCollectionRef.doc(key);
+  const findUserDoc = (id: string) => userCollectionRef.doc(id);
+  const findAccountDoc = (id: string) => accountCollectionRef.doc(id);
+  const findSessionDoc = (id: string) => sessionCollectionRef.doc(id);
+  const findVerificationTokenDoc = (id: string) => verificationTokenCollectionRef.doc(id);
   const findCustomTokenDoc = (sessionToken: string) => customTokenCollectionRef.doc(sessionToken);
 
   return {
@@ -81,7 +78,7 @@ export default function FirestoreAdapter(
     },
     async updateUser(data) {
       const { id, ...userData } = data;
-      findUserDoc(id as string).set(userData);
+      await findUserDoc(id as string).set(userData);
       const user = data as AdapterUser;
       return user;
     },
@@ -106,7 +103,7 @@ export default function FirestoreAdapter(
       await findAccountDoc(accountRef.id).delete()
     },
     async getSessionAndUser(sessionToken) {
-      const q =sessionCollectionRef.where('sessionToken', '==', sessionToken).limit(1);
+      const q = sessionCollectionRef.where('sessionToken', '==', sessionToken).limit(1);
       const sessionRef = await findOne(q);
       if (!sessionRef) return null;
       const sessionData: Partial<AdapterSession> = sessionRef.data();
@@ -124,7 +121,7 @@ export default function FirestoreAdapter(
       } as AdapterSession;
 
       return {
-        user: user,
+        user,
         session: from(session),
       };
     },
@@ -154,9 +151,6 @@ export default function FirestoreAdapter(
       const q = sessionCollectionRef.where('sessionToken', '==', sessionToken).limit(1);
       const sessionRef = await findOne(q);
       if (!sessionRef) return;
-
-      const userRef = (await findUserDoc(sessionRef.data().userId as string).get());
-      const email = userRef.data()?.email ?? '';
       
       await Promise.allSettled([
         findSessionDoc(sessionRef.id).delete(),
