@@ -51,7 +51,7 @@ export default createFirebaseCustomTokenHandler({
 ```
 
 ### Set Firestore Database Rule
-Set a rule in the client that allows users to access only their own data. If you do not set a rule, all data in the database can be accessed by the client, so it must be set.
+Set a rule in the client that allows users to access only their own data. If you do not set a rule, all data in the database can be accessed by the client, so it must be set. In the example, we used path `/store/{userId}/{document=**}` as the user data storage path, but you can change it if you want.
 ```
 rules_version = '2';
 service cloud.firestore {
