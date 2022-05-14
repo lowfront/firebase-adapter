@@ -1,6 +1,7 @@
 node_modules/
 /types/
 /firestore/
+/firebase/
 /next/
 /web/
 /helper.d.ts
