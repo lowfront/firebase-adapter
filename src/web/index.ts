@@ -1,4 +1,4 @@
-import { getApp } from "firebase/app";
+import { FirebaseApp, getApp } from "firebase/app";
 import { getAuth, signInWithCustomToken } from "firebase/auth";
 import {
   doc,
@@ -14,14 +14,20 @@ import {
   QueryDocumentSnapshot,
   Firestore
 } from "firebase/firestore";
+import {
+  push as _push,
+  get as _get,
+  update as _update,
+  remove as _remove,
+} from 'firebase/database';
 import { sleep } from "../helper";
 
-export async function signInFirebase(appName?: string) {
+export async function signInFirebase(app: FirebaseApp = getApp() as FirebaseApp) {
   const token = await fetch('/api/auth/firebase-custom-token').then(res => res.text());
-  await signInWithCustomToken(getAuth(getApp(appName)), token);
+  await signInWithCustomToken(getAuth(app), token);
 }
 
-export async function trySignInWithCustomToken<T>(f?: (() => Promise<T>)|Promise<T>, appName?: string) { // If try continuously, it appears to fail...
+export async function trySignInWithCustomToken<T>(f?: (() => Promise<T>)|Promise<T>, app: FirebaseApp = getApp() as FirebaseApp) { // If try continuously, it appears to fail...
   let failCount = 3;
   
   while (failCount--) {
@@ -29,7 +35,7 @@ export async function trySignInWithCustomToken<T>(f?: (() => Promise<T>)|Promise
       return await (typeof f === 'function' ? f() : f);
     } catch (err: any) {
       console.error(err);
-      await signInFirebase(appName);
+      await signInFirebase(app);
       await sleep(100);
     }
   }
