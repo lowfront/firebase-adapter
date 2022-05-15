@@ -66,10 +66,10 @@ export function createFirebaseCustomTokenHandler({
     const email = user.email as string;
     let token = await getCustomToken(db, sessionToken, adapterCollectionName);
     if (token) return res.json(token);
-  
+
     token = await admin
       .auth()
-      .createCustomToken(email, Object.assign({}, additionalClaims?.(session), { sessionToken }));
+      .createCustomToken(email, Object.assign({}, additionalClaims?.(session), { sessionToken, uid: btoa(email) }));
     await updateCustomToken(db, sessionToken, token, adapterCollectionName);
   
     return res.json(token);
