@@ -2,7 +2,11 @@
 
 ## Introduction
 
-Adapter plug-in for NextAuth.js to use custom token method authentication. It is currently intended for Firestore Database, and will add a Realtime Database adapter later. Firebase can handle the database in the client, but there is not enough providers for authentication provided by Firebase. This package allows you to create rules in Firebase using credentials from various OAuth providers in NextAuth, and allows you to use Firebase in the client while the database is protected. Examples of use can be found [here](https://github.com/lowfront/firebase-adapter/tree/master/example). 
+Adapter plug-in for NextAuth.js to use custom token method authentication. It is intended for Firestore and supports the Realtime Database. Please be careful because the setting and usage are different. Firebase can handle the database in the client, but there is not enough providers for authentication provided by Firebase. This package allows you to create rules in Firebase using credentials from various OAuth providers in NextAuth, and allows you to use Firebase in the client while the database is protected. 
+
+### Examples
+- [Firestore](https://github.com/lowfront/firebase-adapter/tree/master/examples/firestore). 
+- [Realtime Database](https://github.com/lowfront/firebase-adapter/tree/master/examples/firebase).
 
 ## How to start
 
@@ -15,7 +19,7 @@ This module is built for NextAuth.js v4. And, the Firebase admin SDK is used for
 The server uses the Firebase admin SDK. Initialize the app and db as follows:
 ```ts
 // pages/api/auth/[...nextauth].ts
-import { FirestoreAdapter } from "@lowfront/firebase-adapter";
+import { FirestoreAdapter, FirebaseAdapter } from "@lowfront/firebase-adapter";
 import admin from 'firebase-admin';
 import { getFirestore } from 'firebase-admin/firestore';
 
@@ -23,9 +27,12 @@ const app = admin.initializeApp({
   // https://firebase.google.com/docs/admin/setup#initialize-sdk
   // It is recommended to make it an environment variable to distribute to vercel: https://github.com/lowfront/firebase-adapter/blob/master/example/lib/firebase-server.ts#L9-L18
   credential: admin.credential.cert({...} as ServiceAccount),
+
+  // If you want to use the Realtime Database, add the databaseURL : https://firebase.google.com/docs/admin/setup#initialize-sdk
+  // databaseURL: '...',
 });
 
-const db = getFirestore(app);
+const db = getFirestore(app); // If you want to use the Realtime Database, use getDatabase(app);
 
 export default NextAuth({
   providers: [
@@ -35,6 +42,8 @@ export default NextAuth({
     }),
   ],
   adapter: FirestoreAdapter(db),
+  // If you want to use the Realtime Database, use FirebaseAdapter;
+  // adapter: FirebaseAdapter(db),
 })
 ```
 
@@ -68,6 +77,38 @@ service cloud.firestore {
 }
 ```
 
+#### For Realtime Database Rule
+```
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    // Adds an index to the next-auth data for efficient search.
+    "_next_auth_firebase_adapter_": {
+      "account": {
+        ".indexOn": ["providerAccountId"]
+      },
+      "session": {
+        ".indexOn": ["sessionToken"]
+      },
+      "user": {
+        ".indexOn": ["email"]
+      },
+      "verificationToken": {
+        ".indexOn": ["token"]
+      }
+    },
+    // Realtime Database cannot use the email address as a key, so it uses the value encoded in base64 for the email address stored in claims instead of the email address.The operation method is the same as the Firestore rule.
+    "users": {
+      "$uid": {
+        ".write": "auth != null && $uid === auth.token.uid && root.child('_next_auth_firebase_adapter_').child('customToken').child(auth.token.sessionToken).exists()",
+        ".read": "auth != null && $uid === auth.token.uid && root.child('_next_auth_firebase_adapter_').child('customToken').child(auth.token.sessionToken).exists()"
+      }
+    }
+  }
+}
+```
+
 ### Example of using the client
 Unlike servers, the client uses the Firebase SDK to access the database. So, initialize the app with Firebase config and pass the db object to the function provided by the package for use it. The CRUD function (setDoc, addDoc, getDoc, updateDoc, removeDoc...) in Firebase v9 must use the functions wrapped in the package. The wrapper functions have the same signature as Firebase SDK v9.
 ```tsx
@@ -95,3 +136,7 @@ const App: FC<{}> = () => {
   </div>
 };
 ```
+
+#### For Realtime Database
+
+The current Realtime Database should wrap requests with a login check function instead of a wrapper function. See the [example code](https://github.com/lowfront/firebase-adapter/tree/master/examples/firebase/src/pages/index.tsx) for more information.
