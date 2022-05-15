@@ -130,8 +130,6 @@ export default function FirebaseAdapter(
         ...sessionData,
       } as AdapterSession;
 
-      console.log('getSessionAndUser', session);
-
       return {
         user,
         session: from(session),
@@ -148,7 +146,7 @@ export default function FirebaseAdapter(
         id: sessionRef.key,
         ...sessionData as any,
       } as unknown as AdapterSession;
-      console.log('createSession', session);
+
       return session;
     },
     async updateSession(data) {
@@ -157,7 +155,7 @@ export default function FirebaseAdapter(
       const sessionSnap = await q.once('value');
       if (!sessionSnap.exists()) return null;
       const [sessionKey] = Object.entries(sessionSnap.val())[0] as [string, Omit<AdapterUser, 'id'>];
-      console.log('updateSession', to(sessionData));
+
       await findSessionDoc(sessionKey).set(to(sessionData));
       return data as AdapterSession;
     },
