@@ -5,8 +5,8 @@
 Adapter plug-in for NextAuth.js to use custom token method authentication. It is intended for Firestore and supports the Realtime Database. Please be careful because the setting and usage are different. Firebase can handle the database in the client, but there is not enough providers for authentication provided by Firebase. This package allows you to create rules in Firebase using credentials from various OAuth providers in NextAuth, and allows you to use Firebase in the client while the database is protected. 
 
 ### Examples
-- [Firestore](https://github.com/lowfront/firebase-adapter/tree/master/examples/firestore). 
-- [Realtime Database](https://github.com/lowfront/firebase-adapter/tree/master/examples/firebase).
+- [Firestore](https://github.com/lowfront/firebase-adapter/tree/master/examples/firestore)
+- [Realtime Database](https://github.com/lowfront/firebase-adapter/tree/master/examples/firebase)
 
 ## How to start
 
