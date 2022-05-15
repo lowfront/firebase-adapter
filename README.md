@@ -139,4 +139,4 @@ const App: FC<{}> = () => {
 
 #### For Realtime Database
 
-The current Realtime Database should wrap requests with a login check function instead of a wrapper function. See the [example code](https://github.com/lowfront/firebase-adapter/tree/master/examples/firebase/src/pages/index.tsx) for more information.
+The current Realtime Database should wrap requests with a login check function instead of a wrapper function. See the [example code](https://github.com/lowfront/firebase-adapter/blob/master/examples/firebase/pages/index.tsx) for more information.
