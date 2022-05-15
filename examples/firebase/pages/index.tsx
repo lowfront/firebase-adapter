@@ -1,19 +1,27 @@
 import type { NextPage } from 'next'
 import { signIn, signOut, useSession } from 'next-auth/react';
-import { getUserDoc, getDoc } from '@lowfront/firebase-adapter/web';
-import { get, push, update, remove, ref } from 'firebase/database';
-import { db } from '../lib/firebase-web';
+import { signInFirebase, trySignInWithCustomToken } from '@lowfront/firebase-adapter/web';;
+import { get, ref } from 'firebase/database';
+import { app, db } from '../lib/firebase-web';
+import { useEffect } from 'react';
+import { getApp, getApps } from 'firebase/app';
 
 const Home: NextPage = () => {
   const { data: session } = useSession();
 
+  useEffect(() => {
+    if (!session) return;
+    signInFirebase(getApp()).catch(console.error);
+  }, [session]);
+
   async function loadData() {
+    console.log(`users/${btoa(session?.user?.email ?? '')}`);
     try {
-      // const testDoc = await get(ref(db, `_next_auth_firebase_adapter_/store/${session?.user?.email ?? ''}/test`));
-      // alert('success load data');
+      await trySignInWithCustomToken(() => get(ref(db, `users/${btoa(session?.user?.email ?? '')}`)), getApp());
+      alert('success load data');
     } catch (err) {
       console.log(err);
-      // alert('Fail load data');
+      alert('Fail load data');
     }
   }
 

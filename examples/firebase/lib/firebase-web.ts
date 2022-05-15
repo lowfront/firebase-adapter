@@ -25,4 +25,4 @@ export const analytics = (() => {
   if (typeof window !== 'undefined') return getAnalytics(app); // https://stackoverflow.com/a/69457158/16962686
   return null;
 })();
-export const db = getDatabase(app);
+export const db = getDatabase(app, 'https://next-auth-firebase-todo-mvc-default-rtdb.asia-southeast1.firebasedatabase.app');

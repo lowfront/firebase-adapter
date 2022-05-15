@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@lowfront/firebase-adapter': ../../
+  '@lowfront/firebase-adapter': ^0.0.9
   '@types/node': 17.0.31
   '@types/react': 18.0.9
   '@types/react-dom': 18.0.3
@@ -16,7 +16,7 @@ specifiers:
   typescript: 4.6.4
 
 dependencies:
-  '@lowfront/firebase-adapter': link:../..
+  '@lowfront/firebase-adapter': 0.0.9_ef5jwxihqo6n7gxfmzogljlgcm
   firebase: 9.8.1
   firebase-admin: 10.2.0
   next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
@@ -38,7 +38,7 @@ packages:
     resolution: {integrity: sha512-WxYHHUWF2uZ7Hp1K+D1xQgbgkGUfA+5UPOegEXGt2Y5SMog/rYCVaifLZDbw8UkNXozEqqrZTy6bglL7xTaCOw==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      core-js-pure: 3.22.4
+      core-js-pure: 3.22.5
       regenerator-runtime: 0.13.9
     dev: true
 
@@ -55,7 +55,7 @@ packages:
       ajv: 6.12.6
       debug: 4.3.4
       espree: 9.3.2
-      globals: 13.14.0
+      globals: 13.15.0
       ignore: 5.2.0
       import-fresh: 3.3.0
       js-yaml: 4.1.0
@@ -683,6 +683,30 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
+  /@lowfront/firebase-adapter/0.0.9_ef5jwxihqo6n7gxfmzogljlgcm:
+    resolution: {integrity: sha512-LUpT3vJrCU+yo6BqhbEa4DKTDMI/enuvVv6da+KkaPozPvZWxrjWXTdKobSwFGdYKNeAHvjNFBMZ83dAeCkOLQ==}
+    dependencies:
+      firebase: 9.8.1
+      firebase-admin: 10.2.0
+      next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
+      next-auth: 4.3.4_ef5jwxihqo6n7gxfmzogljlgcm
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@firebase/app-compat'
+      - '@firebase/app-types'
+      - babel-plugin-macros
+      - bufferutil
+      - encoding
+      - fibers
+      - node-sass
+      - nodemailer
+      - react
+      - react-dom
+      - sass
+      - supports-color
+      - utf-8-validate
+    dev: false
+
   /@next/env/12.1.6:
     resolution: {integrity: sha512-Te/OBDXFSodPU6jlXYPAXpmZr/AkG6DCATAxttQxqOWaq6eDFX25Db3dK0120GZrSZmv4QCe9KsZmJKDbWs4OA==}
     dev: false
@@ -1144,9 +1168,9 @@ packages:
     dev: false
     optional: true
 
-  /axe-core/4.4.1:
-    resolution: {integrity: sha512-gd1kmb21kwNuWr6BQz8fv6GNECPBnUasepcoLbekws23NVBLODdsClRZ+bQ8+9Uomf3Sm3+Vwn0oYG9NvwnJCw==}
-    engines: {node: '>=4'}
+  /axe-core/4.4.2:
+    resolution: {integrity: sha512-LVAaGp/wkkgYJcjmHsoKx4juT1aQvJyPcW09MLCjVTh3V2cc6PnyempiLMNH5iMdfIX/zdbjUx2KDjMLCTdPeA==}
+    engines: {node: '>=12'}
     dev: true
 
   /axobject-query/2.2.0:
@@ -1195,8 +1219,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /caniuse-lite/1.0.30001339:
-    resolution: {integrity: sha512-Es8PiVqCe+uXdms0Gu5xP5PF2bxLR7OBp3wUzUnuO7OHzhOfCyg3hdiGWVPVxhiuniOzng+hTc1u3fEQ0TlkSQ==}
+  /caniuse-lite/1.0.30001341:
+    resolution: {integrity: sha512-2SodVrFFtvGENGCv0ChVJIDQ0KPaS1cg7/qtfMaICgeMolDdo/Z2OD32F0Aq9yl6F4YFwGPBS5AaPqNYiW4PoA==}
     dev: false
 
   /chalk/4.1.2:
@@ -1253,8 +1277,8 @@ packages:
     engines: {node: '>= 0.6'}
     dev: false
 
-  /core-js-pure/3.22.4:
-    resolution: {integrity: sha512-4iF+QZkpzIz0prAFuepmxwJ2h5t4agvE8WPYqs2mjLJMNNwJOnpch76w2Q7bUfCPEv/V7wpvOfog0w273M+ZSw==}
+  /core-js-pure/3.22.5:
+    resolution: {integrity: sha512-8xo9R00iYD7TcV7OrC98GwxiUEAabVWO3dix+uyWjnYrx9fyASLlIX+f/3p5dW5qByaP2bcZ8X/T47s55et/tA==}
     requiresBuild: true
     dev: true
 
@@ -1512,7 +1536,7 @@ packages:
       debug: 4.3.4
       eslint: 8.15.0
       eslint-plugin-import: 2.26.0_j3mcmpo7om5tltq775lihvikb4
-      glob: 7.2.0
+      glob: 7.2.2
       is-glob: 4.0.3
       resolve: 1.22.0
       tsconfig-paths: 3.14.1
@@ -1588,7 +1612,7 @@ packages:
       aria-query: 4.2.2
       array-includes: 3.1.5
       ast-types-flow: 0.0.7
-      axe-core: 4.4.1
+      axe-core: 4.4.2
       axobject-query: 2.2.0
       damerau-levenshtein: 1.0.8
       emoji-regex: 9.2.2
@@ -1682,7 +1706,7 @@ packages:
       file-entry-cache: 6.0.1
       functional-red-black-tree: 1.0.1
       glob-parent: 6.0.2
-      globals: 13.14.0
+      globals: 13.15.0
       ignore: 5.2.0
       import-fresh: 3.3.0
       imurmurhash: 0.1.4
@@ -1817,7 +1841,7 @@ packages:
       '@types/node': 17.0.31
       dicer: 0.3.1
       jsonwebtoken: 8.5.1
-      jwks-rsa: 2.1.1
+      jwks-rsa: 2.1.2
       node-forge: 1.3.1
       uuid: 8.3.2
     optionalDependencies:
@@ -1980,8 +2004,8 @@ packages:
       path-is-absolute: 1.0.1
     dev: true
 
-  /glob/7.2.0:
-    resolution: {integrity: sha512-lmLf6gtyrPq8tTjSmrO94wBeQbFR3HbLHbuyD69wuyQkImp2hWqMGB47OX65FBkPffO641IP9jWa1z4ivqG26Q==}
+  /glob/7.2.2:
+    resolution: {integrity: sha512-NzDgHDiJwKYByLrL5lONmQFpK/2G78SMMfo+E9CuGlX4IkvfKDsiQSNPwAYxEy+e6p7ZQ3uslSLlwlJcqezBmQ==}
     dependencies:
       fs.realpath: 1.0.0
       inflight: 1.0.6
@@ -1990,8 +2014,8 @@ packages:
       once: 1.4.0
       path-is-absolute: 1.0.1
 
-  /globals/13.14.0:
-    resolution: {integrity: sha512-ERO68sOYwm5UuLvSJTY7w7NP2c8S4UcXs3X1GBX8cwOr+ShOcDBbCY5mH4zxz0jsYCdJ8ve8Mv9n2YGJMB1aeg==}
+  /globals/13.15.0:
+    resolution: {integrity: sha512-bpzcOlgDhMG070Av0Vy5Owklpv1I6+j96GhUI7Rh7IzDCKLzboflLrrfqMu8NquDbiR4EOQk7XzJwqVJxicxog==}
     engines: {node: '>=8'}
     dependencies:
       type-fest: 0.20.2
@@ -2043,7 +2067,7 @@ packages:
       is-stream-ended: 0.1.4
       node-fetch: 2.6.7
       object-hash: 3.0.0
-      proto3-json-serializer: 0.1.8
+      proto3-json-serializer: 0.1.9
       protobufjs: 6.11.2
       retry-request: 4.2.2
     transitivePeerDependencies:
@@ -2411,8 +2435,8 @@ packages:
     dev: false
     optional: true
 
-  /jwks-rsa/2.1.1:
-    resolution: {integrity: sha512-NdtZuf1pvlnWgbCU2c9oRFdi+u8uWpwL6EMiordpasrNFNrGrQGNs7WQ9UiMT0/RG7vt4ElwyObNy04pIbsGCA==}
+  /jwks-rsa/2.1.2:
+    resolution: {integrity: sha512-QW2SNEUVvMqULiBJVsIJXSuX73Qj9il/DMCsJZsmCI8AQFZ6BjXgQW6h9wOlPr1LswQBNDdyFT2LPogwMRr1ew==}
     engines: {node: '>=10 < 13 || >=14'}
     dependencies:
       '@types/express': 4.17.13
@@ -2632,7 +2656,7 @@ packages:
       cookie: 0.4.2
       jose: 4.8.1
       oauth: 0.9.15
-      openid-client: 5.1.5
+      openid-client: 5.1.6
       preact: 10.7.2
       preact-render-to-string: 5.2.0_preact@10.7.2
       react: 18.1.0
@@ -2659,7 +2683,7 @@ packages:
         optional: true
     dependencies:
       '@next/env': 12.1.6
-      caniuse-lite: 1.0.30001339
+      caniuse-lite: 1.0.30001341
       postcss: 8.4.5
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
@@ -2782,8 +2806,8 @@ packages:
     dependencies:
       wrappy: 1.0.2
 
-  /openid-client/5.1.5:
-    resolution: {integrity: sha512-m41p7V/iXyqc0WZeo20uwKk8NPDAtYd3JS0uWjttcqwvFo4YNYAKegMAMea1qG5RClddQ6rV9ec/TP6ZvsCrYw==}
+  /openid-client/5.1.6:
+    resolution: {integrity: sha512-HTFaXWdUHvLFw4GaEMgC0jXYBgpjgzQQNHW1pZsSqJorSgrXzxJ+4u/LWCGaClDEse5HLjXRV+zU5Bn3OefiZw==}
     engines: {node: ^12.19.0 || ^14.15.0 || ^16.13.0}
     dependencies:
       jose: 4.8.1
@@ -2921,8 +2945,8 @@ packages:
       react-is: 16.13.1
     dev: true
 
-  /proto3-json-serializer/0.1.8:
-    resolution: {integrity: sha512-ACilkB6s1U1gWnl5jtICpnDai4VCxmI9GFxuEaYdxtDG2oVI3sVFIUsvUZcQbJgtPM6p+zqKbjTKQZp6Y4FpQw==}
+  /proto3-json-serializer/0.1.9:
+    resolution: {integrity: sha512-A60IisqvnuI45qNRygJjrnNjX2TMdQGMY+57tR3nul3ZgO2zXkR9OGR8AXxJhkqx84g0FTnrfi3D5fWMSdANdQ==}
     dependencies:
       protobufjs: 6.11.2
     dev: false
@@ -3090,7 +3114,7 @@ packages:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
     hasBin: true
     dependencies:
-      glob: 7.2.0
+      glob: 7.2.2
 
   /run-parallel/1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
