@@ -5,6 +5,7 @@
   "main": "./index.js",
   "types": "./index.d.ts",
   "scripts": {
+    "dev": "tsc --project tsconfig.cjs.json --watch",
     "build": "tsc --project tsconfig.cjs.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
