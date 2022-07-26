@@ -41,7 +41,7 @@ export async function updateCustomToken(db: Firestore|Database, sessionToken: st
 }
 
 export function getSessionToken(req: NextApiRequest) {
-  return req.cookies['__Secure-next-auth.session-token'] ?? req.cookies['next-auth.session-token'];
+  return req.cookies['__Secure-next-auth.session-token'] ?? req.cookies['next-auth.session-token'] ?? '';
 }
 
 export function createFirebaseCustomTokenHandler({
@@ -60,6 +60,8 @@ export function createFirebaseCustomTokenHandler({
     const session = await getSession({ req }) as Session;
     if (!session) return res.status(403).json(false);
     const sessionToken = getSessionToken(req);
+    if (!sessionToken) console.warn('No sessionToken');
+    
     const { user } = session as unknown as {
       user: NonNullable<Session['user']>;
     };
