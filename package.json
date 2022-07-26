@@ -1,6 +1,6 @@
 {
   "name": "@lowfront/firebase-adapter",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Firebase adapter for NextAuth.js using Firebase auth's CustomToken authentication method.",
   "main": "./index.js",
   "types": "./index.d.ts",
