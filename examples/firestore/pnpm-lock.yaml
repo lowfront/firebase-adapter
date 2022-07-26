@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@lowfront/firebase-adapter': ^0.1.4
+  '@lowfront/firebase-adapter': ^0.1.5
   '@types/node': 18.6.1
   '@types/react': 18.0.15
   '@types/react-dom': 18.0.6
@@ -16,7 +16,7 @@ specifiers:
   typescript: 4.7.4
 
 dependencies:
-  '@lowfront/firebase-adapter': 0.1.4_uhhoot5cba77umeaufivxjhwg4
+  '@lowfront/firebase-adapter': 0.1.5_uhhoot5cba77umeaufivxjhwg4
   firebase: 9.9.1
   firebase-admin: 11.0.0
   next: 12.2.3_biqbaboplfbrettd7655fr4n2y
@@ -696,8 +696,8 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
-  /@lowfront/firebase-adapter/0.1.4_uhhoot5cba77umeaufivxjhwg4:
-    resolution: {integrity: sha512-tAz3NWzSsFM1kZyiaIZVFiaR0XTfCW+kGaw5/phXPiPuagDbC8w5rZd00t7hNpwL4Ke4OcRKMISAeLjlAdfKHg==}
+  /@lowfront/firebase-adapter/0.1.5_uhhoot5cba77umeaufivxjhwg4:
+    resolution: {integrity: sha512-1dl5jptGMTGNGNCS7gHH01g6q5DNYb2Zda/Jq/9BF4vMo3ZDCRRtKIfHz8yDGWgsYGOQrMoPgjB9ainV4YuMfA==}
     peerDependencies:
       firebase: ^9.x
       firebase-admin: ^10.x
