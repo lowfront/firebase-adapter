@@ -23,7 +23,7 @@ The server uses the Firebase admin SDK. Initialize the app and db as follows:
 #### For Cloud Firestore
 ```ts
 // pages/api/auth/[...nextauth].ts
-import { FirestoreAdapter, FirebaseAdapter } from "@lowfront/firebase-adapter";
+import { FirestoreAdapter } from "@lowfront/firebase-adapter";
 import admin from 'firebase-admin';
 import { getFirestore } from 'firebase-admin/firestore';
 
@@ -44,7 +44,7 @@ export default NextAuth({
 #### For Realtime Database
 ```ts
 // pages/api/auth/[...nextauth].ts
-import { FirestoreAdapter, FirebaseAdapter } from "@lowfront/firebase-adapter";
+import { FirebaseAdapter } from "@lowfront/firebase-adapter";
 import admin from 'firebase-admin';
 import { getFirestore } from 'firebase-admin/firestore';
 
