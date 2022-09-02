@@ -38,8 +38,8 @@
   },
   "peerDependencies": {
     "firebase": "^9.x",
-    "next": "^12.x",
     "firebase-admin": "^10.x",
+    "next": "^12.x",
     "next-auth": "^4.x"
   }
 }
