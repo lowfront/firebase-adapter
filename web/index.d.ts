@@ -1,0 +1,15 @@
+import { FirebaseApp } from "firebase/app";
+import { addDoc as _addDoc, getDoc as _getDoc, getDocs as _getDocs, setDoc as _setDoc, updateDoc as _updateDoc, deleteDoc as _deleteDoc, Query, DocumentData, QueryDocumentSnapshot, Firestore } from "firebase/firestore";
+export declare function signInFirebase(app?: FirebaseApp): Promise<void>;
+export declare function trySignInWithCustomToken<T>(f?: (() => Promise<T>) | Promise<T>, app?: FirebaseApp): Promise<T | undefined>;
+export declare const addDoc: typeof _addDoc;
+export declare const getDoc: typeof _getDoc;
+export declare const getDocs: typeof _getDocs;
+export declare const setDoc: typeof _setDoc;
+export declare const updateDoc: typeof _updateDoc;
+export declare const deleteDoc: typeof _deleteDoc;
+export declare function validCustomToken(db: Firestore, id: string): Promise<import("@firebase/firestore").DocumentSnapshot<DocumentData>>;
+export declare function getUserDoc(db: Firestore, email: string, ...paths: string[]): import("@firebase/firestore").DocumentReference<DocumentData>;
+export declare function getUserCollection(db: Firestore, email: string, ...paths: string[]): import("@firebase/firestore").CollectionReference<DocumentData>;
+export declare function findOne(q: Query<DocumentData>): Promise<QueryDocumentSnapshot<DocumentData> | null>;
+export declare function findMany(q: Query<DocumentData>): Promise<QueryDocumentSnapshot<DocumentData>[]>;

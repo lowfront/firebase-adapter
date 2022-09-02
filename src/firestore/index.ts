@@ -7,7 +7,7 @@ import { FirebaseAdapterProps } from "../types";
 export default function FirestoreAdapter(
   db: Firestore,
   options: FirebaseAdapterProps = {},
-): Adapter {  
+): Adapter {
   const adapterCollectionName = options.adapterCollectionName ?? '_next_auth_firebase_adapter_';
 
   const userCollectionRef = db.collection(adapterCollectionName).doc('store').collection('user');
@@ -30,7 +30,7 @@ export default function FirestoreAdapter(
         image: data.image ?? null,
         emailVerified: data.emailVerified ?? null,
       };
-      
+
       const userRef = await userCollectionRef.add(userData);
       const user = {
         id: userRef.id,
@@ -42,11 +42,11 @@ export default function FirestoreAdapter(
     async getUser(id) {
       const userSnap = await findUserDoc(id).get();
       if (!userSnap.exists) return null;
-      
+
       const user = userSnap.data() as AdapterUser;
       return user;
     },
-    async getUserByEmail(email) {      
+    async getUserByEmail(email) {
       const q = userCollectionRef.where('email', '==', email).limit(1);
       const userRef = await findOne(q);
 
@@ -57,7 +57,7 @@ export default function FirestoreAdapter(
       } as AdapterUser;
       return user;
     },
-    async getUserByAccount({provider, providerAccountId}) {
+    async getUserByAccount({ provider, providerAccountId }) {
       const q = accountCollectionRef.where('provider', '==', provider).where('providerAccountId', '==', providerAccountId).limit(1);
       const accountRef = await findOne(q);
       if (!accountRef) return null;
@@ -65,7 +65,7 @@ export default function FirestoreAdapter(
         id: accountRef.id,
         ...accountRef.data(),
       } as unknown as Account;
-      
+
       const userRef = await findUserDoc(account.userId as string).get();
       if (!userRef.exists) return null
       const userData = userRef.data();
@@ -78,8 +78,12 @@ export default function FirestoreAdapter(
     },
     async updateUser(data) {
       const { id, ...userData } = data;
-      await findUserDoc(id as string).set(userData);
-      const user = data as AdapterUser;
+      await findUserDoc(id as string).set(userData, { merge: true });
+      const userSnap = await findUserDoc(id as string).get();
+      const user = {
+        id: userSnap.id,
+        ...userSnap.data()
+      } as AdapterUser;
       return user;
     },
     async deleteUser(id) {
@@ -110,7 +114,7 @@ export default function FirestoreAdapter(
       const userRef = await findUserDoc(sessionData.userId as string).get();
       if (!userRef.exists) return null
       const userData = userRef.data();
-      
+
       const user = {
         id: userRef.id,
         ...userData,
@@ -151,7 +155,7 @@ export default function FirestoreAdapter(
       const q = sessionCollectionRef.where('sessionToken', '==', sessionToken).limit(1);
       const sessionRef = await findOne(q);
       if (!sessionRef) return;
-      
+
       await Promise.allSettled([
         findSessionDoc(sessionRef.id).delete(),
         findCustomTokenDoc(sessionToken).delete(),

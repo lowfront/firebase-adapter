@@ -1,6 +1,6 @@
 {
   "name": "@lowfront/firebase-adapter",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Firebase adapter for NextAuth.js using Firebase auth's CustomToken authentication method.",
   "main": "./index.js",
   "types": "./index.d.ts",
@@ -38,8 +38,8 @@
   },
   "peerDependencies": {
     "firebase": "^9.x",
-    "next": "^12.x",
     "firebase-admin": "^10.x",
+    "next": "^12.x",
     "next-auth": "^4.x"
   }
 }
