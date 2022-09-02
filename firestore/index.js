@@ -169,7 +169,7 @@ function FirestoreAdapter(db, options) {
                             return [4 /*yield*/, findUserDoc(id).get()];
                         case 2:
                             userSnap = _a.sent();
-                            user = userSnap.data();
+                            user = __assign({ id: userSnap.id }, userSnap.data());
                             return [2 /*return*/, user];
                     }
                 });

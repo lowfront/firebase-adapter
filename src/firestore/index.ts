@@ -80,7 +80,10 @@ export default function FirestoreAdapter(
       const { id, ...userData } = data;
       await findUserDoc(id as string).set(userData, { merge: true });
       const userSnap = await findUserDoc(id as string).get();
-      const user = userSnap.data() as AdapterUser;
+      const user = {
+        id: userSnap.id,
+        ...userSnap.data()
+      } as AdapterUser;
       return user;
     },
     async deleteUser(id) {
